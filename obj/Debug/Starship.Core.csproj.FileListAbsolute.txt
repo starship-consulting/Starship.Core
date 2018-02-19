@@ -1,0 +1,10 @@
+C:\Code\StarshipConsulting\Starship.Core\Starship.Core\obj\Debug\Starship.Core.csprojResolveAssemblyReference.cache
+C:\Code\StarshipConsulting\Starship.Core\Starship.Core\obj\Debug\Starship.Core.csproj.CoreCompileInputs.cache
+C:\Code\StarshipConsulting\Starship.Core\obj\Debug\Starship.Core.csproj.CoreCompileInputs.cache
+C:\Code\StarshipConsulting\Starship.Core\bin\Debug\Starship.Core.dll
+C:\Code\StarshipConsulting\Starship.Core\bin\Debug\Starship.Core.pdb
+C:\Code\StarshipConsulting\Starship.Core\bin\Debug\Newtonsoft.Json.dll
+C:\Code\StarshipConsulting\Starship.Core\bin\Debug\Newtonsoft.Json.xml
+C:\Code\StarshipConsulting\Starship.Core\obj\Debug\Starship.Core.dll
+C:\Code\StarshipConsulting\Starship.Core\obj\Debug\Starship.Core.pdb
+C:\Code\StarshipConsulting\Starship.Core\obj\Debug\Starship.Core.csprojResolveAssemblyReference.cache

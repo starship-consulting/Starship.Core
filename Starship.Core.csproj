@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C44C0866-B04F-4174-8647-DB03A55C89B6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Starship.Core</RootNamespace>
+    <AssemblyName>Starship.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AI\ActionAccumulator.cs" />
+    <Compile Include="AI\Actuator.cs" />
+    <Compile Include="AI\Planning\GoalResource.cs" />
+    <Compile Include="AI\Planning\PlanAction.cs" />
+    <Compile Include="AI\Planning\Planner.cs" />
+    <Compile Include="AI\Simulation.cs" />
+    <Compile Include="AI\StateContainer.cs" />
+    <Compile Include="Attributes\AliasAttribute.cs" />
+    <Compile Include="Attributes\ParseAttribute.cs" />
+    <Compile Include="ChangeTracking\ChangeTrackedObject.cs" />
+    <Compile Include="ChangeTracking\ChangeTracker.cs" />
+    <Compile Include="ChangeTracking\ChangeTrackerProperty.cs" />
+    <Compile Include="ChangeTracking\ChangeTrackerState.cs" />
+    <Compile Include="CodeGeneration\GeneratedClassContext.cs" />
+    <Compile Include="CodeGeneration\ProxyClientGenerator.cs" />
+    <Compile Include="Collections\KeyValueList.cs" />
+    <Compile Include="Collections\NestedDictionary.cs" />
+    <Compile Include="Collections\NestedList.cs" />
+    <Compile Include="Collections\SteppableList.cs" />
+    <Compile Include="Collections\TupleList.cs" />
+    <Compile Include="Contexts\AppContext.cs" />
+    <Compile Include="Contexts\IsAppContextProvider.cs" />
+    <Compile Include="Data\Attributes\PartitionKeyAttribute.cs" />
+    <Compile Include="Data\Attributes\PrimaryKeyAttribute.cs" />
+    <Compile Include="Data\DataExtensions.cs" />
+    <Compile Include="Data\IsDataModel.cs" />
+    <Compile Include="Events\EventStream.cs" />
+    <Compile Include="Events\Standard\EntityModified.cs" />
+    <Compile Include="Events\Standard\FileModified.cs" />
+    <Compile Include="Exceptions\SpatialException.cs" />
+    <Compile Include="Expressions\ConversionAdapter.cs" />
+    <Compile Include="Expressions\ExpressionConverter.cs" />
+    <Compile Include="Expressions\ExpressionReader.cs" />
+    <Compile Include="Expressions\ExpressionToTextVisitor.cs" />
+    <Compile Include="Expressions\ExpressionWrapper.cs" />
+    <Compile Include="Expressions\Interfaces\IExpressionConverter.cs" />
+    <Compile Include="Expressions\Interfaces\IMulticastExpression.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
+    <Compile Include="Extensions\ByteExtensions.cs" />
+    <Compile Include="Extensions\EventInfoExtensions.cs" />
+    <Compile Include="Extensions\ExpressionExtensions.cs" />
+    <Compile Include="Extensions\GenericExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\IntExtensions.cs" />
+    <Compile Include="Extensions\IQueryableExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\MethodInfoExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\PropertyInfoExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
+    <Compile Include="Extensions\TimeExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="FluentApi\BooleanExpressionAdapter.cs" />
+    <Compile Include="FluentApi\DataConversionExpression.cs" />
+    <Compile Include="FluentApi\MulticastExpression.cs" />
+    <Compile Include="GPU\OpenGL\GLBuffers.cs" />
+    <Compile Include="Http\ChunkedDownloader.cs" />
+    <Compile Include="Http\FileDetails.cs" />
+    <Compile Include="Http\IDownloader.cs" />
+    <Compile Include="Http\WebClientDownloader.cs" />
+    <Compile Include="Interfaces\HasIdentity.cs" />
+    <Compile Include="Interfaces\IConverter.cs" />
+    <Compile Include="Interfaces\IObjectProcessor.cs" />
+    <Compile Include="IoC\TypeContainer.cs" />
+    <Compile Include="Json\AlphanumericContractResolver.cs" />
+    <Compile Include="Json\Attributes\ApiHidden.cs" />
+    <Compile Include="Json\JsonSchemaConfiguration.cs" />
+    <Compile Include="Json\SimpleJsonSchema.cs" />
+    <Compile Include="Json\SimpleJsonSchemaGenerator.cs" />
+    <Compile Include="Json\TypeNameSerializationBinder.cs" />
+    <Compile Include="Math\Rectangle.cs" />
+    <Compile Include="Models\ExtractedProperty.cs" />
+    <Compile Include="Plugins\Plugin.cs" />
+    <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="ProblemSolving\Analyzer.cs" />
+    <Compile Include="ProblemSolving\Constraint.cs" />
+    <Compile Include="ProblemSolving\Constraints\BooleanConstraint.cs" />
+    <Compile Include="ProblemSolving\Fact.cs" />
+    <Compile Include="ProblemSolving\Observation.cs" />
+    <Compile Include="ProblemSolving\PatternObserver.cs" />
+    <Compile Include="ProblemSolving\Solver.cs" />
+    <Compile Include="Processing\Pipeline.cs" />
+    <Compile Include="Processing\PipelineManager.cs" />
+    <Compile Include="Processing\TypeRouter.cs" />
+    <Compile Include="Processing\Worker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\CsvAttribute.cs" />
+    <Compile Include="Readers\CsvReader.cs" />
+    <Compile Include="Readers\StringParser.cs" />
+    <Compile Include="Reflection\Automapper.cs" />
+    <Compile Include="Reflection\Converters\DateTimeConverter.cs" />
+    <Compile Include="Reflection\Converters\EnumConverter.cs" />
+    <Compile Include="Reflection\Converters\GuidConverter.cs" />
+    <Compile Include="Reflection\Converters\JArrayConverter.cs" />
+    <Compile Include="Reflection\Converters\JObjectConverter.cs" />
+    <Compile Include="Reflection\Converters\NumberConverter.cs" />
+    <Compile Include="Reflection\MethodInvoker.cs" />
+    <Compile Include="Reflection\PropertyInstance.cs" />
+    <Compile Include="Reflection\TypeMap.cs" />
+    <Compile Include="Reflection\TypeNameResolver.cs" />
+    <Compile Include="Reflection\UniversalTypeConverter.cs" />
+    <Compile Include="Rules\IsRule.cs" />
+    <Compile Include="Rules\Rule.cs" />
+    <Compile Include="Rules\RuleDefinition.cs" />
+    <Compile Include="Rules\RuleDefinitionContext.cs" />
+    <Compile Include="Rules\RuleEngine.cs" />
+    <Compile Include="Rules\RuleViolationException.cs" />
+    <Compile Include="Scheduling\Schedule.cs" />
+    <Compile Include="Security\Hash.cs" />
+    <Compile Include="Security\ISession.cs" />
+    <Compile Include="Security\Permission.cs" />
+    <Compile Include="Security\PermissionContext.cs" />
+    <Compile Include="Security\PermissionManager.cs" />
+    <Compile Include="Security\PermissionTypes.cs" />
+    <Compile Include="Security\SecurityProvider.cs" />
+    <Compile Include="Security\Session.cs" />
+    <Compile Include="Security\SessionToken.cs" />
+    <Compile Include="Spatial\Hex.cs" />
+    <Compile Include="Spatial\IPosition.cs" />
+    <Compile Include="Spatial\ISpatialPoint.cs" />
+    <Compile Include="Spatial\Location.cs" />
+    <Compile Include="Spatial\VirtualRegion.cs" />
+    <Compile Include="Utility\AttributeCache.cs" />
+    <Compile Include="Utility\AttributeProcessor.cs" />
+    <Compile Include="Utility\Benchmark.cs" />
+    <Compile Include="Utility\CallerContext.cs" />
+    <Compile Include="Utility\Disposable.cs" />
+    <Compile Include="Utility\EventInterceptor.cs" />
+    <Compile Include="Utility\Events\EventHook.cs" />
+    <Compile Include="Utility\Events\EventItem.cs" />
+    <Compile Include="Utility\FileHelper.cs" />
+    <Compile Include="Utility\Identity.cs" />
+    <Compile Include="Utility\ObjectComparer.cs" />
+    <Compile Include="Utility\Randomizer.cs" />
+    <Compile Include="Utility\ReflectionCache.cs" />
+    <Compile Include="Utility\TaskHelper.cs" />
+    <Compile Include="Utility\WorkFlow.cs" />
+    <Compile Include="Validation\Validation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
