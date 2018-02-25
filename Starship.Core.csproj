@@ -43,21 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\ActionAccumulator.cs" />
-    <Compile Include="AI\Actuator.cs" />
-    <Compile Include="AI\Planning\GoalResource.cs" />
-    <Compile Include="AI\Planning\PlanAction.cs" />
-    <Compile Include="AI\Planning\Planner.cs" />
-    <Compile Include="AI\Simulation.cs" />
-    <Compile Include="AI\StateContainer.cs" />
     <Compile Include="Attributes\AliasAttribute.cs" />
     <Compile Include="Attributes\ParseAttribute.cs" />
     <Compile Include="ChangeTracking\ChangeTrackedObject.cs" />
     <Compile Include="ChangeTracking\ChangeTracker.cs" />
     <Compile Include="ChangeTracking\ChangeTrackerProperty.cs" />
     <Compile Include="ChangeTracking\ChangeTrackerState.cs" />
-    <Compile Include="CodeGeneration\GeneratedClassContext.cs" />
-    <Compile Include="CodeGeneration\ProxyClientGenerator.cs" />
     <Compile Include="Collections\KeyValueList.cs" />
     <Compile Include="Collections\NestedDictionary.cs" />
     <Compile Include="Collections\NestedList.cs" />
@@ -119,13 +110,6 @@
     <Compile Include="Models\ExtractedProperty.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
-    <Compile Include="ProblemSolving\Analyzer.cs" />
-    <Compile Include="ProblemSolving\Constraint.cs" />
-    <Compile Include="ProblemSolving\Constraints\BooleanConstraint.cs" />
-    <Compile Include="ProblemSolving\Fact.cs" />
-    <Compile Include="ProblemSolving\Observation.cs" />
-    <Compile Include="ProblemSolving\PatternObserver.cs" />
-    <Compile Include="ProblemSolving\Solver.cs" />
     <Compile Include="Processing\Pipeline.cs" />
     <Compile Include="Processing\PipelineManager.cs" />
     <Compile Include="Processing\TypeRouter.cs" />
@@ -183,13 +167,6 @@
     <Compile Include="Utility\TaskHelper.cs" />
     <Compile Include="Utility\WorkFlow.cs" />
     <Compile Include="Validation\Validation.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.6.4.js" />
-    <Content Include="Scripts\jquery-1.6.4.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
