@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Starship.Core</RootNamespace>
     <AssemblyName>Starship.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,26 +31,57 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Spatial, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Spatial.0.4.0\lib\net40\MathNet.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.EnvironmentVariables, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.EnvironmentVariables.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.2.0.1\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.2.0.1\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.2.0.1\lib\netstandard2.0\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\ActionAccumulator.cs" />
-    <Compile Include="AI\Actuator.cs" />
-    <Compile Include="AI\Planning\GoalResource.cs" />
-    <Compile Include="AI\Planning\PlanAction.cs" />
-    <Compile Include="AI\Planning\Planner.cs" />
-    <Compile Include="AI\Simulation.cs" />
-    <Compile Include="AI\StateContainer.cs" />
     <Compile Include="Attributes\AliasAttribute.cs" />
     <Compile Include="Attributes\ParseAttribute.cs" />
     <Compile Include="ChangeTracking\ChangeTrackedObject.cs" />
@@ -61,8 +93,9 @@
     <Compile Include="Collections\NestedList.cs" />
     <Compile Include="Collections\SteppableList.cs" />
     <Compile Include="Collections\TupleList.cs" />
-    <Compile Include="Contexts\AppContext.cs" />
-    <Compile Include="Contexts\IsAppContextProvider.cs" />
+    <Compile Include="Configuration\StarshipConfiguration.cs" />
+    <Compile Include="DependencyInjection\DependencyContainer.cs" />
+    <Compile Include="DependencyInjection\IsDependencyProvider.cs" />
     <Compile Include="Data\Attributes\PartitionKeyAttribute.cs" />
     <Compile Include="Data\Attributes\PrimaryKeyAttribute.cs" />
     <Compile Include="Data\DataExtensions.cs" />
@@ -113,10 +146,19 @@
     <Compile Include="Json\SimpleJsonSchema.cs" />
     <Compile Include="Json\SimpleJsonSchemaGenerator.cs" />
     <Compile Include="Json\TypeNameSerializationBinder.cs" />
+    <Compile Include="Math\BinaryRelations.cs" />
+    <Compile Include="Math\PairingFunctions.cs" />
     <Compile Include="Math\Rectangle.cs" />
     <Compile Include="Models\ExtractedProperty.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="ProblemSolving\Analyzer.cs" />
+    <Compile Include="ProblemSolving\Constraint.cs" />
+    <Compile Include="ProblemSolving\Constraints\BooleanConstraint.cs" />
+    <Compile Include="ProblemSolving\Fact.cs" />
+    <Compile Include="ProblemSolving\Observation.cs" />
+    <Compile Include="ProblemSolving\PatternObserver.cs" />
+    <Compile Include="ProblemSolving\Solver.cs" />
     <Compile Include="Processing\Pipeline.cs" />
     <Compile Include="Processing\PipelineManager.cs" />
     <Compile Include="Processing\TypeRouter.cs" />
@@ -125,7 +167,8 @@
     <Compile Include="Readers\CsvAttribute.cs" />
     <Compile Include="Readers\CsvReader.cs" />
     <Compile Include="Readers\StringParser.cs" />
-    <Compile Include="Reflection\Automapper.cs" />
+    <Compile Include="Reflection\Automap.cs" />
+    <Compile Include="Reflection\ObjectMapper.cs" />
     <Compile Include="Reflection\Converters\DateTimeConverter.cs" />
     <Compile Include="Reflection\Converters\EnumConverter.cs" />
     <Compile Include="Reflection\Converters\GuidConverter.cs" />
@@ -176,14 +219,9 @@
     <Compile Include="Validation\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.6.4.js" />
-    <Content Include="Scripts\jquery-1.6.4.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

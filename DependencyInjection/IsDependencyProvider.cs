@@ -1,7 +1,5 @@
-﻿using System;
-
-namespace Starship.Core.Contexts {
-    public interface IsAppContextProvider {
+﻿namespace Starship.Core.DependencyInjection {
+    public interface IsDependencyProvider {
         void Clear();
         void Set(string key, object value);
         object Get(string key);

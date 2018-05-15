@@ -98,9 +98,7 @@ namespace Starship.Core.Extensions {
 
         public static object InvokeStaticGenericMethod(this Type type, string methodName, Type genericType,
             params object[] parameters) {
-            var methods =
-                type.GetMethods(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.NonPublic |
-                                BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            var methods = type.GetMethods(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy);
             var method = methods.First(each => each.Name == methodName && each.IsGenericMethod);
             var genericMethod = method.MakeGenericMethod(genericType);
 
@@ -110,13 +108,15 @@ namespace Starship.Core.Extensions {
         public static object InvokeGenericMethod(this object source, string methodName, Type genericType,
             params object[] parameters) {
             var type = source.GetType();
-            var methods =
-                type.GetMethods(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.NonPublic |
-                                BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+            var methods = type.GetMethods(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             var method = methods.First(each => each.Name == methodName && each.IsGenericMethod);
             var genericMethod = method.MakeGenericMethod(genericType);
 
             return genericMethod.Invoke(source, parameters);
+        }
+
+        public static T DeepJsonClone<T>(this T source) {
+            return JsonConvert.DeserializeObject<T>(source.DeepSerialize());
         }
 
         public static string ShallowSerialize(this object instance) {

@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Starship.Core.Reflection {
-    public static class Automapper {
+    public static class ObjectMapper {
 
         public static T Map<T>(object from) where T : new() {
             var instance = new T();

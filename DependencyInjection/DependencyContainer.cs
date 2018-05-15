@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Starship.Core.Contexts {
-    public static class AppContext {
+namespace Starship.Core.DependencyInjection {
+    public static class DependencyContainer {
 
-        public static IsAppContextProvider Provider { get; set; }
+        public static IsDependencyProvider Provider { get; set; }
 
         public static void Clear() {
             if (Provider == null) {

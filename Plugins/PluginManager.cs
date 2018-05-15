@@ -14,8 +14,12 @@ namespace Starship.Core.Plugins {
             EventRouter = new TypeRouter();
         }
 
+        public T Get<T>() where T : Plugin {
+            return Plugins.OfType<T>().FirstOrDefault();
+        }
+
         public void With<T>(Action<T> action) where T : Plugin {
-            var plugin = (T) Plugins.FirstOrDefault(each => each is T);
+            var plugin = Get<T>();
 
             if(plugin != null) {
                 action(plugin);
@@ -47,6 +51,12 @@ namespace Starship.Core.Plugins {
 
             foreach (var plugin in Plugins) {
                 plugin.Start();
+            }
+        }
+
+        public void Stop() {
+            foreach(var plugin in Plugins) {
+                plugin.Stop();
             }
         }
         
