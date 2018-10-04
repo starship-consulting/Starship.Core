@@ -4,11 +4,11 @@ using System.IO;
 
 namespace Starship.Core.Utility {
     public static class FileHelper {
-        public static List<string> GetFilesRecursively(string directory, string extension) {
+        public static List<string> GetFilesRecursively(string directory, string extension = "") {
             var results = new List<string>();
 
             foreach (var file in Directory.GetFiles(directory)) {
-                if (Path.GetExtension(file) == extension) {
+                if (string.IsNullOrEmpty(extension) || Path.GetExtension(file) == extension) {
                     results.Add(file.Replace(@"\", "/"));
                 }
             }

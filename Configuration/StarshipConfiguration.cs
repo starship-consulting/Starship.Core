@@ -1,10 +1,10 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
+//using Microsoft.Extensions.Configuration;
 
 namespace Starship.Core.Configuration {
     public static class StarshipConfiguration {
 
-        static StarshipConfiguration() {
+        /*static StarshipConfiguration() {
             var path = ""; // env.ContentRootPath
             var environment = ""; // env.EnvironmentName
 
@@ -17,6 +17,6 @@ namespace Starship.Core.Configuration {
                 .Build();
         }
 
-        private static IConfigurationRoot Configuration { get; set; }
+        private static IConfigurationRoot Configuration { get; set; }*/
     }
 }
