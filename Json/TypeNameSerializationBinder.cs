@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace Starship.Core.Json {
 
-    public class TypeNameSerializationBinder : SerializationBinder {
+    public class TypeNameSerializationBinder : ISerializationBinder {
 
         public TypeNameSerializationBinder(string typeFormat, bool attemptTypeConversion = true) {
             TypeFormat = typeFormat;
@@ -14,12 +15,12 @@ namespace Starship.Core.Json {
             Assemblies = new List<Assembly>();
         }
 
-        public override void BindToName(Type serializedType, out string assemblyName, out string typeName) {
+        public void BindToName(Type serializedType, out string assemblyName, out string typeName) {
             assemblyName = null;
             typeName = serializedType.Name;
         }
 
-        public override Type BindToType(string assemblyName, string typeName) {
+        public Type BindToType(string assemblyName, string typeName) {
             if (!AttemptTypeConversion) {
                 return typeof(Object);
             }

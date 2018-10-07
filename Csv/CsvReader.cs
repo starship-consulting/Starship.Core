@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Starship.Core.Extensions;
 
-namespace Starship.Core.Readers {
+namespace Starship.Core.Csv {
     public class CsvReader<T> : CsvReader where T : new() {
         public CsvReader(Stream stream) : base(stream) {
             Init();

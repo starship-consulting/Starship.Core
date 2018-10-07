@@ -48,9 +48,6 @@
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
@@ -87,6 +84,12 @@
     <Compile Include="Collections\SteppableList.cs" />
     <Compile Include="Collections\TupleList.cs" />
     <Compile Include="Configuration\StarshipConfiguration.cs" />
+    <Compile Include="Context\CallContextResolver.cs" />
+    <Compile Include="Context\ContextResolver.cs" />
+    <Compile Include="Context\IsContext.cs" />
+    <Compile Include="Csv\CsvAttribute.cs" />
+    <Compile Include="Csv\CsvFormatAttribute.cs" />
+    <Compile Include="Csv\CsvReader.cs" />
     <Compile Include="Data\IsDataProvider.cs" />
     <Compile Include="Data\IsStorageContainer.cs" />
     <Compile Include="Data\Storage\UploadedFile.cs" />
@@ -116,6 +119,7 @@
     <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\IQueryableExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\MemberInfoExtensions.cs" />
     <Compile Include="Extensions\MethodInfoExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
@@ -129,21 +133,22 @@
     <Compile Include="FluentApi\DataConversionExpression.cs" />
     <Compile Include="FluentApi\MulticastExpression.cs" />
     <Compile Include="GPU\OpenGL\GLBuffers.cs" />
-    <Compile Include="Http\ChunkedDownloader.cs" />
     <Compile Include="Http\FileDetails.cs" />
-    <Compile Include="Http\IDownloader.cs" />
-    <Compile Include="Http\WebClientDownloader.cs" />
     <Compile Include="Interfaces\HasIdentity.cs" />
     <Compile Include="Interfaces\IConverter.cs" />
     <Compile Include="Interfaces\IObjectProcessor.cs" />
     <Compile Include="IoC\TypeContainer.cs" />
-    <Compile Include="Json\AlphabeticalContractResolver.cs" />
+    <Compile Include="Json\ConfigurableJsonContractResolver.cs" />
     <Compile Include="Json\AlphanumericContractResolver.cs" />
     <Compile Include="Json\Attributes\ApiHidden.cs" />
-    <Compile Include="Json\JsonSchemaConfiguration.cs" />
+    <Compile Include="Json\JsonSerializerSettingPresets.cs" />
     <Compile Include="Json\NullStringValueProvider.cs" />
-    <Compile Include="Json\SimpleJsonSchema.cs" />
-    <Compile Include="Json\SimpleJsonSchemaGenerator.cs" />
+    <Compile Include="Json\Schema\DataOrientedJsonSchemaGenerator.cs" />
+    <Compile Include="Json\Schema\JsonObjectClassifierTypes.cs" />
+    <Compile Include="Json\Schema\JsonSchemaConfiguration.cs" />
+    <Compile Include="Json\Schema\SimpleJsonSchema.cs" />
+    <Compile Include="Json\Schema\SimpleJsonSchemaGenerator.cs" />
+    <Compile Include="Json\SecureJsonContractResolver.cs" />
     <Compile Include="Json\TypeNameSerializationBinder.cs" />
     <Compile Include="Math\BinaryRelations.cs" />
     <Compile Include="Math\PairingFunctions.cs" />
@@ -163,10 +168,9 @@
     <Compile Include="Processing\TypeRouter.cs" />
     <Compile Include="Processing\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Readers\CsvAttribute.cs" />
-    <Compile Include="Readers\CsvReader.cs" />
     <Compile Include="Readers\StringParser.cs" />
     <Compile Include="Reflection\Automap.cs" />
+    <Compile Include="Reflection\DynamicQuery.cs" />
     <Compile Include="Reflection\ObjectMapper.cs" />
     <Compile Include="Reflection\Converters\DateTimeConverter.cs" />
     <Compile Include="Reflection\Converters\EnumConverter.cs" />
@@ -176,6 +180,7 @@
     <Compile Include="Reflection\Converters\NumberConverter.cs" />
     <Compile Include="Reflection\MethodInvoker.cs" />
     <Compile Include="Reflection\PropertyInstance.cs" />
+    <Compile Include="Reflection\RuntimeObjectBuilder.cs" />
     <Compile Include="Reflection\TypeMap.cs" />
     <Compile Include="Reflection\TypeNameResolver.cs" />
     <Compile Include="Reflection\UniversalTypeConverter.cs" />
@@ -186,12 +191,15 @@
     <Compile Include="Rules\RuleEngine.cs" />
     <Compile Include="Rules\RuleViolationException.cs" />
     <Compile Include="Scheduling\Schedule.cs" />
+    <Compile Include="Security\AccessTypes.cs" />
     <Compile Include="Security\Hash.cs" />
+    <Compile Include="Security\HasSecurityPolicy.cs" />
     <Compile Include="Security\ISession.cs" />
     <Compile Include="Security\Permission.cs" />
     <Compile Include="Security\PermissionContext.cs" />
     <Compile Include="Security\PermissionManager.cs" />
     <Compile Include="Security\PermissionTypes.cs" />
+    <Compile Include="Security\SecureAttribute.cs" />
     <Compile Include="Security\SecurityProvider.cs" />
     <Compile Include="Security\Session.cs" />
     <Compile Include="Security\SessionToken.cs" />

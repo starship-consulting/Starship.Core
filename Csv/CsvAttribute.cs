@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace Starship.Core.Readers
-{
-    public class CsvAttribute : Attribute
-    {
+namespace Starship.Core.Csv {
+    public class CsvAttribute : Attribute {
         public CsvAttribute(int index) {
             Index = index;
         }

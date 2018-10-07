@@ -1,23 +1,24 @@
 ﻿using Starship.Core.Extensions;
 
 namespace Starship.Core.Interfaces {
-    public interface BaseIdentity {
+    public interface HasId {
+        string GetId();
+    }
+
+    public interface HasIdentity<T> : HasId {
+        T Id { get; set; }
     }
 
     public interface HasIdentity : HasIdentity<int> {
     }
 
-    public interface HasIdentity<T> : BaseIdentity {
-        T Id { get; set; }
-    }
-
     public static class BaseIdentityExtensions {
-        public static bool HasId(this BaseIdentity target, object id) {
+        public static bool HasId(this HasId target, object id) {
             return Equals(target.GetId(), id);
         }
 
-        public static object GetId(this BaseIdentity target) {
+        /*public static object GetId(this BaseIdentity target) {
             return target.GetPropertyValue("Id");
-        }
+        }*/
     }
 }

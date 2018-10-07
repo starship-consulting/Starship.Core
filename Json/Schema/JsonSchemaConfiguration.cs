@@ -1,4 +1,4 @@
-﻿namespace Starship.Core.Json {
+﻿namespace Starship.Core.Json.Schema {
     public class JsonSchemaConfiguration {
         public static JsonSchemaConfiguration Default {
             get { return new JsonSchemaConfiguration(); }

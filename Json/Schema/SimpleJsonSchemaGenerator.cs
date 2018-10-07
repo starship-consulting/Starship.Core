@@ -6,7 +6,7 @@ using System.Reflection;
 using Starship.Core.Extensions;
 using Starship.Core.Json.Attributes;
 
-namespace Starship.Core.Json {
+namespace Starship.Core.Json.Schema {
     public class SimpleJsonSchemaGenerator {
         public SimpleJsonSchemaGenerator() {
             Types = new List<Type>();

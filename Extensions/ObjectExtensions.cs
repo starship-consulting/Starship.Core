@@ -10,6 +10,14 @@ using Starship.Core.Reflection;
 namespace Starship.Core.Extensions {
     public static class ObjectExtensions {
         
+        public static T GetFieldValue<T>(this object source, string fieldName) {
+            return (T) source.GetType().FindField(fieldName).GetValue(source);
+        }
+
+        public static T GetPropertyValue<T>(this object source, string propertyName) {
+            return (T) source.GetType().FindProperty(propertyName).GetValue(source, null);
+        }
+
         public static IQueryable<T> ToQueryable<T>(this T entity) {
             return new List<T> {
                 entity
