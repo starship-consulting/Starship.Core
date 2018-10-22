@@ -7,17 +7,22 @@ using Starship.Core.Attributes;
 
 namespace Starship.Core.Extensions {
     public static class TypeExtensions {
-
         public static T GetAttribute<T>(this Type type) where T : Attribute {
-            return (T)type.GetCustomAttribute(typeof(T));
+            return (T) type.GetCustomAttribute(typeof(T));
         }
 
         public static void WithAttribute<T>(this Type type, Action<T> handler) where T : Attribute {
             var attribute = type.GetAttribute<T>();
 
-            if(attribute != null) {
+            if (attribute != null) {
                 handler(attribute);
             }
+        }
+
+        public static MethodInfo GetGenericMethod(this Type type, string methodName, Type genericType) {
+            var methods = type.GetMethods(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
+            var method = methods.First(each => each.Name == methodName && each.IsGenericMethod);
+            return method.MakeGenericMethod(genericType);
         }
 
         public static object InvokeExtensionMethod(this Type type, string methodName, Type genericType, object target) {
@@ -38,6 +43,18 @@ namespace Starship.Core.Extensions {
 
         public static bool IsStatic(this Type type) {
             return type.IsAbstract && type.IsSealed;
+        }
+
+        public static bool HasInterface(this Type type, Type interfaceType) {
+            if (interfaceType.IsGenericType) {
+                return type.GetInterfaces().Any(each => each.IsGenericType && each.GetGenericTypeDefinition() == interfaceType);
+            }
+
+            return interfaceType.IsAssignableFrom(type);
+        }
+
+        public static bool HasInterface<T>(this Type type) {
+            return type.GetInterfaces().Any(each => each == typeof(T));
         }
 
         public static PropertyInfo[] GetPublicProperties(this Type type) {
@@ -163,6 +180,10 @@ namespace Starship.Core.Extensions {
         }
 
         public static bool IsCollection(this Type type) {
+            if (type == typeof(string)) {
+                return false;
+            }
+
             return type.Is<IList>() || type.Is<ICollection>() || type.Is<IEnumerable>();
         }
 
@@ -172,6 +193,10 @@ namespace Starship.Core.Extensions {
 
         public static bool IsNonSystemClass(this Type type) {
             return type.Namespace != "System" && !type.IsPrimitive;
+        }
+
+        public static bool IsComplexType(this Type type) {
+            return type.IsClass && !type.FullName.StartsWith("System");
         }
 
         public static List<Type> GetTypesOf(this Type type, List<Assembly> assemblies = null, bool includeAbstract = false) {

@@ -5,11 +5,15 @@ using Starship.Core.Expressions;
 
 namespace Starship.Core.Extensions {
     public static class IQueryableExtensions {
+        
+        public static object FirstOrDefault(this IQueryable query) {
+            var method = typeof(IQueryableExtensions).GetMethods().FirstOrDefault(each => each.Name == "FirstOrDefault" && each.IsGenericMethod);
+            var generic = method.MakeGenericMethod(query.ElementType);
+            return generic.Invoke(null, new object[] { query });
+        }
 
-        public static object IsomorphicFirstOrDefault(this IQueryable query) {
-            return typeof(Queryable).GetMethods()
-                .First(each => each.Name == "FirstOrDefault" && each.GetParameters().Count() == 1)
-                .MakeGenericMethod(query.GetGenericType()).Invoke(null, new object[] { query });
+        public static T FirstOrDefault<T>(IQueryable query) {
+            return Queryable.FirstOrDefault(query.Cast<T>());
         }
 
         public static IQueryable Where(this IQueryable source, string propertyName, object value) {

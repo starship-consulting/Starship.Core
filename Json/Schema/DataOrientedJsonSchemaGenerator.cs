@@ -45,101 +45,6 @@ namespace Starship.Core.Json.Schema {
             return false;
         }
 
-        /*public void AddType(Type type) {
-          Types.Add(type);
-        }*/
-
-        /*private static string ResolveTypeName(Type type) {
-          if (type.Is<HttpResponseMessage>()) {
-            return "HttpStatusCode";
-          }
-    
-          if (type.IsGenericType) {
-            if (type.IsCollection()) {
-              return "array";
-            }
-    
-            return type.Name.Split('`').First().Replace("Model", "");
-          }
-    
-          return type.Name.Replace("Model", "");
-        }*/
-
-        /*public static SimpleJsonSchema GenerateSchemaSimple(Type type) {
-          var typeSchema = Schema();
-          var typeName = ResolveTypeName(type).CamelCase();
-    
-          typeSchema.Add("type", typeName);
-    
-          if (type.IsGenericType) {
-            type = type.GenericTypeArguments.First();
-            typeSchema.Add("of", type.Name.CamelCase());
-          }
-    
-          if (type.Namespace == "System" || type.IsPrimitive) {
-            return typeSchema;
-          }
-    
-          var typeProperties = GetSchema(type);
-    
-          if (!type.Is<HttpResponseMessage>()) {
-            typeSchema.Add("body", typeProperties);
-          }
-    
-          return typeSchema;
-        }*/
-
-        /*public static SimpleJsonSchema GetSchema(params ParameterInfo[] parameters) {
-          var schema = Schema();
-    
-          foreach (var parameter in parameters) {
-            schema.Add(parameter.Name, GetSchema(parameter.ParameterType));
-          }
-    
-          return schema;
-        }*/
-
-        /*public static SimpleJsonSchema GenerateJavascriptSchema(Type type) {
-          var typeSchema = Schema();
-    
-          if (type.IsEnum) {
-            typeSchema.Add("type", "number");
-    
-            var options = Schema();
-    
-            foreach (var value in Enum.GetValues(type)) {
-              options.Add(Enum.GetName(type, value), value);
-            }
-    
-            typeSchema.Add("options", options);
-    
-            return typeSchema;
-          }
-    
-          var typeProperties = Schema();
-          typeSchema.Add("properties", typeProperties);
-    
-          foreach (var property in type.GetProperties().OrderByDescending(each => each.Name == "Id").ThenBy(each => each.Name)) {
-            typeProperties.Add(GetPropertyName(property), GetPropertyDefinition(property.PropertyType).ToString());
-          }
-    
-          var instanceMethods = type.GetMethods().Where(method => method.IsPublic && IsVoidReturnType(method) && !method.IsStatic && !method.IsSpecialName && !method.IsVirtual).ToList();
-          var staticMethods = type.GetMethods().Where(method => method.IsPublic && method.IsStatic && !method.IsSpecialName && !method.IsVirtual).ToList();
-    
-          var instanceMethodsSchema = MapSchema(instanceMethods);
-          var staticMethodsSchema = MapSchema(staticMethods);
-    
-          if (instanceMethodsSchema != null) {
-            typeSchema.Add("methods", instanceMethodsSchema);
-          }
-    
-          if (staticMethodsSchema != null) {
-            typeSchema.Add("static", staticMethodsSchema);
-          }
-    
-          return typeSchema;
-        }*/
-
         private static SimpleJsonSchema MapSchema(List<MethodInfo> methods) {
             if (methods.Any()) {
                 var methodSchema = Schema();
@@ -206,13 +111,15 @@ namespace Starship.Core.Json.Schema {
                 return;
             }
 
-            var typeSchema = GenerateSchema(type, true);
+            var typeSchema = GenerateSchema(type);
 
             typeSchema.Add("id", "#" + type.Name);
             typeSchema.Add("title", type.Name);
 
-            if (type.GetInterfaces().Any()) {
-                typeSchema.Add("interfaces", type.GetInterfaces().Select(each => each.Name).ToList());
+            if(IncludeInterfaces) {
+                if (type.GetInterfaces().Any()) {
+                    typeSchema.Add("interfaces", type.GetInterfaces().Select(each => each.Name).ToList());
+                }
             }
 
             var classification = GetClassification(type);
@@ -226,16 +133,8 @@ namespace Starship.Core.Json.Schema {
 
             parent.Add(type.Name, typeSchema);
         }
-
-        private static void MapInterfaces(SimpleJsonSchema schema, Type type) {
-            foreach (var _interface in type.GetInterfaces()) {
-                var interfaceSchema = Schema();
-
-                schema.Add("interfaces", type.GetInterfaces());
-            }
-        }
-
-        public static SimpleJsonSchema GenerateSchema(Type type, bool includeMethods = false) {
+        
+        public SimpleJsonSchema GenerateSchema(Type type) {
             var typeSchema = Schema();
 
             if (type.IsEnum) {
@@ -270,7 +169,7 @@ namespace Starship.Core.Json.Schema {
                     else if (property.Is<DateTime>()) {
                         typeProperty.Add("type", "date");
                     }
-                    else if (property.Is<int>() || property.Is<decimal>() || property.Is<double>() || property.Is<float>()) {
+                    else if (property.Is<int>() || property.Is<decimal>() || property.Is<double>() || property.Is<float>() || property.Is<long>()) {
                         typeProperty.Add("type", "number");
                     }
                     else if (property.PropertyType.IsGenericType && GetEnumerableType(property.PropertyType) != null) {
@@ -300,10 +199,14 @@ namespace Starship.Core.Json.Schema {
 
                     typeProperty.Add("set", property.GetSetMethod() != null ? "true" : "false");
 
-                    typeProperties.Add(property.Name.CamelCase(), typeProperty);
+                    var propertyName = property.Name.CamelCase();
+
+                    if(!typeProperties.ContainsKey(propertyName)) {
+                        typeProperties.Add(property.Name.CamelCase(), typeProperty);
+                    }
                 }
 
-                if (includeMethods) {
+                if (IncludeMethods) {
                     var methods = type.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance).ToList();
                     typeSchema.Add("methods", MapSchema(methods));
                 }
@@ -323,6 +226,10 @@ namespace Starship.Core.Json.Schema {
         }
 
         public List<Type> Types { get; set; }
+
+        public bool IncludeInterfaces { get; set; }
+
+        public bool IncludeMethods { get; set; }
 
         private static List<Type> LateBoundTypes { get; set; }
     }

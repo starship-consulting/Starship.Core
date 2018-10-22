@@ -38,7 +38,6 @@ namespace Starship.Core.Json {
         }
 
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization) {
-
             var properties = base.CreateProperties(type, memberSerialization);
 
             if(IdPropertyAlwaysFirst && SortAlphabetically) {

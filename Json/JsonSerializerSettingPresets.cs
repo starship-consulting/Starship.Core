@@ -6,9 +6,11 @@ namespace Starship.Core.Json {
 
         public static JsonSerializerSettings Minimal => new JsonSerializerSettings {
             Formatting = Formatting.Indented,
-            ContractResolver = new ConfigurableJsonContractResolver { UseCamelCase = true, ShowEmptyCollections = false },
-            NullValueHandling = NullValueHandling.Ignore,
-            DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
+            ContractResolver = new ConfigurableJsonContractResolver { UseCamelCase = false, ShowEmptyCollections = false },
+            //DefaultValueHandling = DefaultValueHandling.Include,
+            NullValueHandling = NullValueHandling.Ignore
+            //NullValueHandling = NullValueHandling.Ignore,
+            //DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate
         };
     }
 }
