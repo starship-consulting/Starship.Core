@@ -104,10 +104,18 @@ namespace Starship.Core.Extensions {
             return TypeConverter.Convert(source, type);
         }
 
-        public static object InvokeStaticGenericMethod(this Type type, string methodName, Type genericType, params object[] parameters) {
+        public static object InvokeStaticGenericMethod(this Type type, string methodName, Type genericType, object[] parameters) {
             var methods = type.GetMethods(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy);
             var method = methods.First(each => each.Name == methodName && each.IsGenericMethod);
             var genericMethod = method.MakeGenericMethod(genericType);
+
+            return genericMethod.Invoke(null, parameters);
+        }
+
+        public static object InvokeStaticGenericMethod(this Type type, string methodName, Type genericType1, Type genericType2, object[] parameters) {
+            var methods = type.GetMethods(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            var method = methods.First(each => each.Name == methodName && each.IsGenericMethod);
+            var genericMethod = method.MakeGenericMethod(genericType1, genericType2);
 
             return genericMethod.Invoke(null, parameters);
         }

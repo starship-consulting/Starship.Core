@@ -106,6 +106,7 @@
     <Compile Include="Exceptions\SpatialException.cs" />
     <Compile Include="Expressions\ConversionAdapter.cs" />
     <Compile Include="Expressions\ExpressionConverter.cs" />
+    <Compile Include="Expressions\ExpressionParameterRebinder.cs" />
     <Compile Include="Expressions\ExpressionReader.cs" />
     <Compile Include="Expressions\ExpressionToTextVisitor.cs" />
     <Compile Include="Expressions\ExpressionWrapper.cs" />
