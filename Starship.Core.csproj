@@ -92,7 +92,6 @@
     <Compile Include="Csv\CsvReader.cs" />
     <Compile Include="Csv\CsvWriter.cs" />
     <Compile Include="Data\IsDataProvider.cs" />
-    <Compile Include="Data\IsStorageContainer.cs" />
     <Compile Include="Data\Storage\UploadedFile.cs" />
     <Compile Include="DependencyInjection\DependencyContainer.cs" />
     <Compile Include="DependencyInjection\IsDependencyProvider.cs" />
@@ -210,6 +209,8 @@
     <Compile Include="Spatial\ISpatialPoint.cs" />
     <Compile Include="Spatial\Location.cs" />
     <Compile Include="Spatial\VirtualRegion.cs" />
+    <Compile Include="Storage\FileReference.cs" />
+    <Compile Include="Storage\IsFileStorageProvider.cs" />
     <Compile Include="Time\TimeProvider.cs" />
     <Compile Include="Utility\AttributeCache.cs" />
     <Compile Include="Utility\AttributeProcessor.cs" />
