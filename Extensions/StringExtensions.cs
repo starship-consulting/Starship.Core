@@ -135,8 +135,8 @@ namespace Starship.Core.Extensions {
             return temp.ToUpper() + input.Remove(0, 1);
         }
 
-        public static String CamelCase(this string input) {
-            if (String.IsNullOrEmpty(input)) {
+        public static string CamelCase(this string input) {
+            if (string.IsNullOrEmpty(input)) {
                 return string.Empty;
             }
 

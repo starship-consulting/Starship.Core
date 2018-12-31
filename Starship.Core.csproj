@@ -99,6 +99,7 @@
     <Compile Include="Data\Attributes\PrimaryKeyAttribute.cs" />
     <Compile Include="Data\DataExtensions.cs" />
     <Compile Include="Data\IsDataModel.cs" />
+    <Compile Include="Email\EmailClient.cs" />
     <Compile Include="Events\EventStream.cs" />
     <Compile Include="Events\Standard\EntityModified.cs" />
     <Compile Include="Events\Standard\FileModified.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Interfaces\IConverter.cs" />
     <Compile Include="Interfaces\IObjectProcessor.cs" />
     <Compile Include="IoC\TypeContainer.cs" />
+    <Compile Include="Json\ConfigurableDictionaryJsonConverter.cs" />
     <Compile Include="Json\ConfigurableJsonContractResolver.cs" />
     <Compile Include="Json\AlphanumericContractResolver.cs" />
     <Compile Include="Json\Attributes\ApiHidden.cs" />
