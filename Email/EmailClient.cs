@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Starship.Core.Email {
     public class EmailClient {
+
         public EmailClient(string domain, string username, string password, string host, int port = 587) {
             Client = new SmtpClient(host, port);
             Client.EnableSsl = true;
@@ -22,21 +23,33 @@ namespace Starship.Core.Email {
         }
 
         public void Send(string from, string to, string subject, string body) {
-            Client.Send(GetMailMessage(from, to, subject, body));
+            Client.Send(GetMailMessage(from, new EmailModel(to, subject, body)));
         }
 
         public async Task SendAsync(string from, string to, string subject, string body) {
-            await Client.SendMailAsync(GetMailMessage(from, to, subject, body));
+            await Client.SendMailAsync(GetMailMessage(from, new EmailModel(to, subject, body)));
         }
 
-        private MailMessage GetMailMessage(string from, string to, string subject, string body) {
+        public async Task SendAsync(string from, EmailModel email) {
+            await Client.SendMailAsync(GetMailMessage(from, email));
+        }
+
+        private MailMessage GetMailMessage(string from, EmailModel email) {
+
+            if(string.IsNullOrEmpty(from)) {
+                from = DefaultFromAddress;
+            }
+
             var message = new MailMessage();
 
-            message.To.Add(to);
-            message.From = new MailAddress(from);
-            message.Subject = subject;
+            foreach(var recipient in email.To) {
+                message.To.Add(recipient);
+            }
 
-            body = body.Replace("<p></p>", "").Replace("<p><br></p>", "<br>")
+            message.From = new MailAddress(from);
+            message.Subject = email.Subject;
+
+            var body = email.Body.Replace("<p></p>", "").Replace("<p><br></p>", "<br>")
                 .Replace("<p", "<div").Replace("</p>", "</div>")
                 .Replace("<br><ol>", "<ol>")
                 .Replace("<br><ul>", "<ul>")
@@ -92,6 +105,8 @@ namespace Starship.Core.Email {
             // Finally, remove all HTML tags and return plain text
             return Regex.Replace(sbHTML.ToString(), "<[^>]*>", "");
         }
+
+        public string DefaultFromAddress { get; set; }
 
         private SmtpClient Client { get; set; }
     }
