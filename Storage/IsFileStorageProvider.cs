@@ -18,5 +18,7 @@ namespace Starship.Core.Storage {
         Task<bool> DeleteAsync(string partition, string path);
 
         Task<FileReference> GetFileAsync(string partition, string path);
+
+        string GetDefaultPartitionName();
     }
 }
