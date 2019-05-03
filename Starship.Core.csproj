@@ -196,7 +196,10 @@
     <Compile Include="Rules\RuleEngine.cs" />
     <Compile Include="Rules\RuleViolationException.cs" />
     <Compile Include="Scheduling\Schedule.cs" />
+    <Compile Include="Security\EntityParticipant.cs" />
+    <Compile Include="Security\AccessRight.cs" />
     <Compile Include="Security\AccessTypes.cs" />
+    <Compile Include="Security\AccessClaim.cs" />
     <Compile Include="Security\Hash.cs" />
     <Compile Include="Security\HasSecurityPolicy.cs" />
     <Compile Include="Security\ISession.cs" />

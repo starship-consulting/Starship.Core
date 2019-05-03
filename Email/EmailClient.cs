@@ -48,62 +48,11 @@ namespace Starship.Core.Email {
 
             message.From = new MailAddress(from);
             message.Subject = email.Subject;
-
-            var body = email.Body.Replace("<p></p>", "").Replace("<p><br></p>", "<br>")
-                .Replace("<p", "<div").Replace("</p>", "</div>")
-                .Replace("<br><ol>", "<ol>")
-                .Replace("<br><ul>", "<ul>")
-                .Replace("class=\"ql-align-center\"", "style=\"text-align: center;\"")
-                .Replace("class=\"ql-align-right\"", "style=\"text-align: right;\"");
-
-            var text = HTMLToText(body);
-
-            message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body, Encoding.UTF8, MediaTypeNames.Text.Html));
-            message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, Encoding.UTF8, MediaTypeNames.Text.Plain));
+            
+            message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(email.GetHtml(), Encoding.UTF8, MediaTypeNames.Text.Html));
+            message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(email.GetPlainText(), Encoding.UTF8, MediaTypeNames.Text.Plain));
 
             return message;
-        }
-
-        private string HTMLToText(string HTMLCode) {
-
-            // Remove new lines since they are not visible in HTML
-            HTMLCode = HTMLCode.Replace("\n", " ");
-
-            // Remove tab spaces
-            HTMLCode = HTMLCode.Replace("\t", " ");
-
-            // Remove multiple white spaces from HTML
-            HTMLCode = Regex.Replace(HTMLCode, "\\s+", " ");
-
-            // Remove HEAD tag
-            HTMLCode = Regex.Replace(HTMLCode, "<head.*?</head>", "", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
-            // Remove any JavaScript
-            HTMLCode = Regex.Replace(HTMLCode, "<script.*?</script>", "", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
-            // Replace special characters like &, <, >, " etc.
-            var sbHTML = new StringBuilder(HTMLCode);
-
-            // Note: There are many more special characters, these are just
-            // most common. You can add new characters in this arrays if needed
-            string[] OldWords = {
-                "&nbsp;", "&amp;", "&quot;", "&lt;",
-                "&gt;", "&reg;", "&copy;", "&bull;", "&trade;"
-            };
-
-            string[] NewWords = {" ", "&", "\"", "<", ">", "Â®", "Â©", "â€¢", "â„¢"};
-
-            for (int i = 0; i < OldWords.Length; i++) {
-                sbHTML.Replace(OldWords[i], NewWords[i]);
-            }
-
-            // Check if there are line breaks (<br>) or paragraph (<p>)
-            sbHTML.Replace("<br>", "\n<br>");
-            sbHTML.Replace("<br ", "\n<br ");
-            sbHTML.Replace("<p ", "\n<p ");
-
-            // Finally, remove all HTML tags and return plain text
-            return Regex.Replace(sbHTML.ToString(), "<[^>]*>", "");
         }
 
         public string DefaultFromAddress { get; set; }
