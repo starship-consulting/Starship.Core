@@ -35,11 +35,11 @@ namespace Starship.Core.Plugins {
         }
 
         protected void On<T>(Action<T> callback) {
-            EventStream.On(callback);
+            EventHub.On(callback);
         }
 
         protected void Publish(object e) {
-            EventStream.Publish(e);
+            EventHub.Publish(e);
         }
 
         public string Name { get; set; }

@@ -13,7 +13,7 @@ namespace Starship.Core.Extensions {
             return clone;
         }
 
-        public static T Clone<T>(this T instance) where T : new() {
+        public static T Clone<T>(this object instance) where T : new() {
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(instance));
         }
     }

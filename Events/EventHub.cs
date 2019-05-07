@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Starship.Core.Processing;
 
 namespace Starship.Core.Events {
-    public static class EventStream {
+    public static class EventHub {
 
-        static EventStream() {
+        static EventHub() {
             Router = new TypeRouter();
             GlobalCallbacks = new List<MulticastDelegate>();
         }
