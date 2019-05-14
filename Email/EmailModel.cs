@@ -8,6 +8,7 @@ namespace Starship.Core.Email {
 
         public EmailModel() {
             To = new List<string>();
+            CC = new List<string>();
         }
 
         public EmailModel(string to, string subject, string body) : this() {
@@ -74,5 +75,7 @@ namespace Starship.Core.Email {
         public string Subject { get; set; }
 
         public string Body { get; set; }
+
+        public List<string> CC { get; set; }
     }
 }
