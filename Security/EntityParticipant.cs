@@ -17,5 +17,8 @@ namespace Starship.Core.Security {
 
         [JsonProperty(PropertyName="role")]
         public string Role { get; set; }
+
+        [JsonProperty(PropertyName="rights")]
+        public string[] Rights { get; set; }
     }
 }
