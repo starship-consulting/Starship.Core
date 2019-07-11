@@ -28,6 +28,14 @@ namespace Starship.Core.Extensions {
             return new DateTime(source.Year, source.Month, source.Day).AddMonths(1).AddTicks(-1);
         }
 
+        public static string ToIso(this DateTime date) {
+            return date.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ");
+        }
+
+        public static string ToUnixTimestamp(this DateTime date) {
+            return date.Subtract(new DateTime(1970, 1, 1)).TotalSeconds.ToString();
+        }
+
         public static long ToJavascriptDate(this DateTime date) {
             return (date - new DateTime(1970, 1, 1)).Ticks / 10000;
         }
