@@ -94,6 +94,7 @@
     <Compile Include="Csv\CsvFormatAttribute.cs" />
     <Compile Include="Csv\CsvReader.cs" />
     <Compile Include="Csv\CsvWriter.cs" />
+    <Compile Include="Data\CosmosResource.cs" />
     <Compile Include="Data\IsDataProvider.cs" />
     <Compile Include="Data\Storage\UploadedFile.cs" />
     <Compile Include="DependencyInjection\DependencyContainer.cs" />

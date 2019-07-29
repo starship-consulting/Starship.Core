@@ -135,6 +135,18 @@ namespace Starship.Core.Extensions {
             return temp.ToUpper() + input.Remove(0, 1);
         }
 
+        public static int CountOccurancesOf(this string input, string match) {
+            int count = 0;
+            int i = 0;
+            
+            while ((i = input.IndexOf(match, i)) != -1) {
+                i += match.Length;
+                count++;
+            }
+
+            return count;
+        }
+
         public static string CamelCase(this string input) {
             if (string.IsNullOrEmpty(input)) {
                 return string.Empty;

@@ -36,6 +36,10 @@ namespace Starship.Core.Extensions {
             return date.Subtract(new DateTime(1970, 1, 1)).TotalSeconds.ToString();
         }
 
+        public static DateTime FromUnixTimestamp(this long date) {
+            return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(date);
+        }
+
         public static long ToJavascriptDate(this DateTime date) {
             return (date - new DateTime(1970, 1, 1)).Ticks / 10000;
         }
