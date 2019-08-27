@@ -26,6 +26,10 @@ namespace Starship.Core.Email {
             Client.Send(GetMailMessage(from, new EmailModel(to, subject, body)));
         }
 
+        public async Task SendAsync(string to, string subject, string body) {
+            await Client.SendMailAsync(GetMailMessage(string.Empty, new EmailModel(to, subject, body)));
+        }
+
         public async Task SendAsync(string from, string to, string subject, string body) {
             await Client.SendMailAsync(GetMailMessage(from, new EmailModel(to, subject, body)));
         }

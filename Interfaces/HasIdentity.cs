@@ -3,6 +3,7 @@
 namespace Starship.Core.Interfaces {
     public interface HasId {
         string GetId();
+        void SetId(object value);
     }
 
     public interface HasIdentity<T> : HasId {
