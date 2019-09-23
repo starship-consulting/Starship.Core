@@ -96,7 +96,6 @@
     <Compile Include="Csv\CsvFormatAttribute.cs" />
     <Compile Include="Csv\CsvReader.cs" />
     <Compile Include="Csv\CsvWriter.cs" />
-    <Compile Include="Data\CosmosResource.cs" />
     <Compile Include="Data\IsDataProvider.cs" />
     <Compile Include="Data\Storage\UploadedFile.cs" />
     <Compile Include="DependencyInjection\DependencyContainer.cs" />
@@ -208,7 +207,9 @@
     <Compile Include="Security\AccessClaim.cs" />
     <Compile Include="Security\Hash.cs" />
     <Compile Include="Security\HasSecurityPolicy.cs" />
+    <Compile Include="Security\SecurityContextProvider.cs" />
     <Compile Include="Security\ISession.cs" />
+    <Compile Include="Security\IsSecurityContext.cs" />
     <Compile Include="Security\Permission.cs" />
     <Compile Include="Security\PermissionContext.cs" />
     <Compile Include="Security\PermissionManager.cs" />
