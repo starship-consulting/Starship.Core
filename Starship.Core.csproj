@@ -107,6 +107,8 @@
     <Compile Include="Email\EmailClient.cs" />
     <Compile Include="Email\EmailModel.cs" />
     <Compile Include="Email\SmtpSettings.cs" />
+    <Compile Include="EventSourcing\EventSinkRegistrar.cs" />
+    <Compile Include="EventSourcing\EventSink.cs" />
     <Compile Include="Events\EventHub.cs" />
     <Compile Include="Events\Standard\EntityModified.cs" />
     <Compile Include="Events\Standard\FileModified.cs" />

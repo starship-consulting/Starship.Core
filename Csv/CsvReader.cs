@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Starship.Core.Extensions;
 
 namespace Starship.Core.Csv {
     public class CsvReader<T> : CsvReader where T : new() {
+
         public CsvReader(Stream stream) : base(stream) {
             Init();
         }
@@ -22,29 +24,41 @@ namespace Starship.Core.Csv {
                 if (csvAttribute != null) {
                     Properties[csvAttribute.Index] = property;
                 }
+                else {
+                    Properties[Properties.Count] = property;
+                }
             }
         }
 
+        public IEnumerable<T> ReadRows() {
+            return GetRows().Select(MapRow);
+        }
+
         public T ReadRow() {
-            var item = new T();
             var row = new CsvRow();
 
             if (ReadRow(row)) {
-                var index = 0;
-
-                foreach (var column in row) {
-                    if (Properties.ContainsKey(index)) {
-                        var property = Properties[index];
-                        property.SetValue(item, column.As(property.PropertyType));
-                    }
-
-                    index += 1;
-                }
-
-                return item;
+                return MapRow(row);
             }
 
-            return default(T);
+            return default;
+        }
+
+        private T MapRow(CsvRow row) {
+
+            var item = new T();
+            var index = 0;
+
+            foreach (var column in row) {
+                if (Properties.ContainsKey(index)) {
+                    var property = Properties[index];
+                    property.SetValue(item, column.As(property.PropertyType));
+                }
+
+                index += 1;
+            }
+
+            return item;
         }
 
         public int CurrentRowIndex { get; set; }
