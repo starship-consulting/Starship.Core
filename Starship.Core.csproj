@@ -104,6 +104,8 @@
     <Compile Include="Data\Attributes\PrimaryKeyAttribute.cs" />
     <Compile Include="Data\DataExtensions.cs" />
     <Compile Include="Data\IsDataModel.cs" />
+    <Compile Include="Patch\PatchHunk.cs" />
+    <Compile Include="Patch\PatchReader.cs" />
     <Compile Include="Email\EmailClient.cs" />
     <Compile Include="Email\EmailModel.cs" />
     <Compile Include="Email\SmtpSettings.cs" />

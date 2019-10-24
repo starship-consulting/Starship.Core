@@ -108,11 +108,17 @@ namespace Starship.Core.Extensions {
             return true;
         }
 
-        public static List<MethodInfo> GetRealMethods(this Type type, bool publicOnly = false) {
-            var flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+        public static List<MethodInfo> GetDeclaredMethods(this Type type, bool includeStatic = false, bool includePrivate = false) {
 
-            if (publicOnly)
-                flags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
+            var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly;
+
+            if(includeStatic) {
+                flags = flags | BindingFlags.Static;
+            }
+
+            if (includePrivate) {
+                flags = flags | BindingFlags.NonPublic;
+            }
 
             return type.GetMethods(flags).Where(m => !m.IsSpecialName).ToList();
         }

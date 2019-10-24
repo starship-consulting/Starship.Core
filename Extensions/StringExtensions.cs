@@ -135,16 +135,20 @@ namespace Starship.Core.Extensions {
             return temp.ToUpper() + input.Remove(0, 1);
         }
 
-        public static int CountOccurancesOf(this string input, string match) {
-            int count = 0;
-            int i = 0;
-            
-            while ((i = input.IndexOf(match, i)) != -1) {
-                i += match.Length;
-                count++;
-            }
+        public static IEnumerable<int> GetOccurancesOf(this string input, params string[] patterns) {
 
-            return count;
+            foreach(var pattern in patterns) {
+                int i = 0;
+            
+                while ((i = input.IndexOf(pattern, i)) != -1) {
+                    yield return i;
+                    i += pattern.Length;
+                }
+            }
+        }
+
+        public static int CountOccurancesOf(this string input, string match) {
+            return input.GetOccurancesOf(match).Count();
         }
 
         public static string CamelCase(this string input) {
